@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AR OLD PARTS | Car Parts Shop</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#17212b}
+header{background:#101820;color:white;padding:18px 16px}
+.brand{font-size:25px;font-weight:800;color:#f2b84b}
+header p{margin:6px 0 0;color:#ddd}
+nav{background:#202e39;padding:12px 16px;color:white}
+.hero{padding:30px 18px;background:#101820;color:white}
+.hero h1{font-size:32px;margin:0 0 12px}
+.hero p{color:#d5dce2;line-height:1.5}
+.btn{display:inline-block;background:#f2b84b;color:#101820;
+padding:12px 16px;border:0;border-radius:8px;font-weight:bold;
+text-decoration:none;cursor:pointer}
+main{padding:18px;max-width:1000px;margin:auto}
+h2{margin-top:12px}
+input,select{width:100%;padding:13px;margin:8px 0 16px;
+border:1px solid #ccd3da;border-radius:8px;font-size:16px}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:white;border-radius:12px;padding:12px;
+box-shadow:0 2px 8px #0000000c}
+.part-icon{height:100px;background:#e8edf1;border-radius:8px;
+display:flex;align-items:center;justify-content:center;font-size:48px}
+.card h3{font-size:16px;margin:12px 0 6px}
+.price{font-weight:bold;color:#167447;margin:8px 0}
+.card p{font-size:13px;color:#58636d;line-height:1.4}
+.card .btn{width:100%;text-align:center;font-size:13px;padding:11px 5px}
+.note{font-size:13px;color:#5b6670;line-height:1.5}
+footer{margin-top:28px;background:#101820;color:white;padding:24px 18px;text-align:center}
+@media(min-width:650px){.products{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">🚘 AR OLD PARTS</div>
+  <p>Quality Used Car Parts at the Right Price</p>
+</header>
+<nav>Home　 |　 Car Parts　 |　 Contact</nav>
+
+<section class="hero">
+  <h1>Find the Right Part for Your Car</h1>
+  <p>Engine parts, sensors, electrical parts aur doosre used spare parts.</p>
+  <a class="btn" href="#parts">Explore Parts ↓</a>
+</section>
+
+<main id="parts">
+  <h2>Find Your Car Part</h2>
+  <input id="search" type="search" placeholder="Search part name or car model..."
+  oninput="filterParts()">
+
+  <div class="products" id="products">
+    <article class="card" data-search="alternator electrical engine">
+      <div class="part-icon">⚙️</div>
+      <h3>Used Alternator</h3>
+      <p>Used part. Condition and compatibility to be confirmed.</p>
+      <div class="price">Price on request</div>
+      <button class="btn" onclick="order('Used Alternator')">Enquire on WhatsApp</button>
+    </article>
+
+    <article class="card" data-search="headlight light front body">
+      <div class="part-icon">💡</div>
+      <h3>Car Headlight</h3>
+      <p>Used part. Check model and side before ordering.</p>
+      <div class="price">Price on request</div>
+      <button class="btn" onclick="order('Car Headlight')">Enquire on WhatsApp</button>
+    </article>
+
+    <article class="card" data-search="fuel injector diesel engine">
+      <div class="part-icon">🔩</div>
+      <h3>Fuel Injector</h3>
+      <p>Diesel/petrol compatibility must be confirmed.</p>
+      <div class="price">Price on request</div>
+      <button class="btn" onclick="order('Fuel Injector')">Enquire on WhatsApp</button>
+    </article>
+
+    <article class="card" data-search="steering rack suspension steering">
+      <div class="part-icon">🛠️</div>
+      <h3>Steering Rack</h3>
+      <p>Confirm vehicle model and part number first.</p>
+      <div class="price">Price on request</div>
+      <button class="btn" onclick="order('Steering Rack')">Enquire on WhatsApp</button>
+    </article>
+  </div>
+
+  <h2>Need a Different Part?</h2>
+  <p>Apni car ka model aur required part WhatsApp par bhejein.</p>
+  <a class="btn" href="#contact">Contact AR OLD PARTS</a>
+
+  <p class="note">Note: Ye sample listings hain. Actual stock, photos, prices,
+  condition aur warranty confirm karne ke baad hi customer ko final details dein.</p>
+</main>
+
+<footer id="contact">
+  <h2>AR OLD PARTS</h2>
+  <p>Car Spare Parts | Palia</p>
+  <p>Order aur availability ke liye WhatsApp karein.</p>
+  <p class="note">Apna WhatsApp number set karne ke baad order button kaam karega.</p>
+</footer>
+
+<script>
+  const WHATSAPP_NUMBER = "917505886344";
+
+function order(part){
+  if(!/^91\d{10}$/.test(WHATSAPP_NUMBER)){
+    alert("Website owner ko code mein apna WhatsApp number set karna hai.");
+    return;
+  }
+  const message = "Namaste AR OLD PARTS, mujhe " + part +
+    " chahiye. Car model: ____. Kripya price aur availability batayein.";
+  window.open("https://wa.me/" + WHATSAPP_NUMBER +
+    "?text=" + encodeURIComponent(message), "_blank");
+}
+
+function filterParts(){
+  const query = document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll(".card").forEach(card=>{
+    card.style.display = card.dataset.search.includes(query) ||
+      card.innerText.toLowerCase().includes(query) ? "" : "none";
+  });
+}
+</script>
+</body>
+</html>
